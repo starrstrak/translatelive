@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TranslateLive</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>TranslateLive</h1>
+  <span id="status" class="status">Prêt</span>
+</header>
+
+<section class="panel controls">
+  <label>Langue source
+    <select id="source"></select>
+  </label>
+  <label>Traduire vers
+    <select id="target"></select>
+  </label>
+  <label>Sortie
+    <select id="output">
+      <option value="text">Texte</option>
+      <option value="audio">Voix</option>
+      <option value="both">Texte + voix</option>
+    </select>
+  </label>
+  <label class="voice-opt">Moteur de voix
+    <select id="engine">
+      <option value="browser">Navigateur (gratuit)</option>
+      <option value="openai">OpenAI (plus naturel)</option>
+    </select>
+  </label>
+  <label class="voice-opt">Voix OpenAI
+    <select id="voice">
+      <option>alloy</option><option>ash</option><option>coral</option>
+      <option>echo</option><option>nova</option><option>onyx</option><option>shimmer</option>
+    </select>
+  </label>
+</section>
+
+<section class="panel inputs">
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-mode="screen" role="tab">🖥 Vidéo / conférence (audio d'onglet)</button>
+    <button class="tab" data-mode="mic" role="tab">🎙 Mon micro</button>
+    <button class="tab" data-mode="text" role="tab">⌨ Texte</button>
+  </div>
+
+  <div id="pane-screen" class="pane">
+    <p>Ouvrez la vidéo (YouTube, Zoom web, Teams web, Meet, webinaire…) dans un onglet, puis cliquez
+    <b>Démarrer</b> et choisissez cet onglet en cochant <b>« Partager l'audio de l'onglet »</b>.
+    Chrome / Edge sur ordinateur requis.</p>
+    <button id="start-screen" class="primary">Démarrer</button>
+  </div>
+  <div id="pane-mic" class="pane" hidden>
+    <p>Parlez: votre voix est traduite en continu. Utilisez un casque pour éviter l'écho si la sortie est en voix.</p>
+    <button id="start-mic" class="primary">Démarrer</button>
+  </div>
+  <div id="pane-text" class="pane" hidden>
+    <textarea id="text-in" rows="3" placeholder="Écrivez ici puis Entrée (Maj+Entrée = nouvelle ligne)"></textarea>
+    <button id="send-text" class="primary">Traduire</button>
+  </div>
+
+  <button id="stop" class="danger" hidden>Arrêter</button>
+  <div class="meter" id="meterWrap" hidden><div id="meter"></div></div>
+</section>
+
+<section class="outputs">
+  <div class="panel col"><h2>Original</h2><div id="log-orig" class="log"></div></div>
+  <div class="panel col"><h2>Traduction</h2><div id="log-tr" class="log"></div></div>
+</section>
+<div class="actions">
+  <button id="copy">Copier la traduction</button>
+  <button id="clear">Effacer</button>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

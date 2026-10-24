@@ -1,0 +1,12 @@
+{
+  "name": "translatelive",
+  "version": "1.0.0",
+  "description": "Traduction en direct: audio de vidéos/conférences, micro et texte, en sortie texte ou voix.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": { "node": ">=18" }
+}
